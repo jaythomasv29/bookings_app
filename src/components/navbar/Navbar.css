@@ -1,0 +1,42 @@
+.navbar {
+  height: 50px;
+  background-color: var(--theme-color);
+  display: flex;
+  justify-content: center;
+}
+
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1024px;
+  align-items: center;
+}
+
+span.logo {
+  color: white;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+}
+
+.navButton {
+  padding: 5px 15px;
+  margin: 0 5px;
+  font-weight: 500;
+  color:  var(--theme-color);
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  /* border-radius: 3px; */
+}
+
+.navButton:hover {
+  opacity: 0.8;
+}

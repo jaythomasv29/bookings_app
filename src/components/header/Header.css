@@ -1,0 +1,172 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #003580;
+  padding-bottom: 50px;
+  position: relative;
+  
+}
+
+.headerContainer {
+  width: 100%;
+  max-width: 1024px;
+  
+
+}
+
+.headerList {
+  /* width: 100%; */
+  /* margin-left: 30px; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.headerListItem {
+  color: white;
+  padding: 15px 15px;
+  margin: 7px 5px;
+  border-radius: 25px;  
+  display: flex;
+  cursor: pointer;
+}
+
+.headerListItem.active {
+  border: 1px solid white;
+}
+
+.headerListItem > span {
+  margin: 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.headerListItem:hover {
+  opacity: 0.9;
+  background-color: var(--theme-color);
+  transform: scale(1.05);
+  transition: 500ms;
+}
+
+
+
+h1.headerTitle {
+  color: white;
+  font-size: 34px;
+  font-weight: bolder;
+  letter-spacing: 0.75px;
+}
+
+.headerDesc {
+  margin: 20px 0;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 0.75px;
+}
+
+button.headerBtn {
+  background-color: #0071c2;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: bolder;
+  font-size: 16px;
+  margin: 15px 0;
+  letter-spacing: 0.25px;
+}
+
+button.btnDisabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+button.disabled {
+  /* background-color: grey; */
+  cursor: not-allowed;
+}
+
+.headerSearch {
+  height: 30px;
+  background-color: white;
+  border: 3px solid #f3bb02;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.headerIcon {
+  color: lightgray;
+  margin: 5px;
+  
+}
+
+span.headerSearchText {
+  color: rgb(92, 92, 92);
+  cursor: pointer;
+}
+
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 5px;
+
+}
+
+.date {
+  position: absolute;
+  top: 50px;
+}
+
+input.headerSearchInput {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.options {
+  position: absolute;
+  top: 50px;
+  background-color: #fff;
+  color: gray;
+  font-size: 14px;
+  border-radius: 5px;
+  -webkit-box-shadoow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
+
+.optionItem {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.optionCounter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: black;
+}
+
+.optionCounterButton {
+  width: 30px;
+  height: 30px;
+  color: rgb(79, 79, 79);
+  border: none;
+  cursor: pointer;
+  border: 1px solid rgba(201, 201, 201, 0.47);
+  border-radius: 3px;
+}
