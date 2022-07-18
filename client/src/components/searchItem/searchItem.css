@@ -1,0 +1,125 @@
+.searchItem {
+  border: 1px solid lightgray;
+  display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.searchImage {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.searchItemDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 2;
+}
+
+.searchItemTitle {
+  font-size: 20px;
+  color: #0071c2;
+}
+
+.searchItemDistance {
+  font-size: 12px;
+}
+
+.searchItemTaxiOption {
+  font-size: 12px;
+  background-color: #008009;
+  color: white;
+  width: max-content;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.searchItemSubtitle {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.searchItemFeatures {
+  font-size: 12px;
+}
+
+.searchItemCancelOption {
+  font-size: 12px;
+  color: #008009;
+  font-weight: bold;
+}
+
+
+.searchOptionCancelSubtitle {
+  font-size: 12px;
+  color: #008009;
+  font-weight: bold;
+}
+
+.searchItemDetails {
+  margin-top: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.ratingsWrapper {
+  display: flex;
+  align-items: flex-start;
+}
+.ratingsWrapper h4, p {
+  margin: 0;
+  padding: 0;
+}
+
+.ratingsWrapper h4 {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.25px;
+}
+
+.ratingCategoryContainer p {
+  color: gray;
+  font-size: 12px;
+}
+
+.ratingsWrapper p.ratingScale {
+  background-color: #003580;
+  padding: 5px;
+  color: white;
+  border-radius: 7px 7px 7px 0px;
+  margin-left: 5px;
+}
+
+.comfortScaleTitle {
+  color: #0071c2;
+  font-weight: bold;
+  font-size: 14px;
+  
+}
+.searchItemRate {
+  margin-top: 25px;
+}
+
+.searchItemRate p {
+  font-size: 12px;
+  color: grey;
+}
+
+.searchItemRate h2 {
+  font-weight: 400;
+  text-align: right;
+}
+
+.checkAvailabilityButton {
+  padding: 8px 14px;
+  background-color: #0071c2;
+  color: white;
+  border: none;
+}

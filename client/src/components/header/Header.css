@@ -4,16 +4,19 @@
   align-items: center;
   width: 100%;
   background-color: #003580;
-  padding-bottom: 50px;
+  
   position: relative;
   
 }
 
 .headerContainer {
   width: 100%;
-  max-width: 1024px;
-  
+  max-width: 90%;
+  margin: 20px 0px 60px 0px;
+}
 
+.headerContainer.listMode {
+margin: 20px 0px 0px 0px;
 }
 
 .headerList {
@@ -28,7 +31,6 @@
   color: white;
   padding: 15px 15px;
   margin: 7px 5px;
-  border-radius: 25px;  
   display: flex;
   cursor: pointer;
 }
@@ -101,7 +103,7 @@ button.disabled {
   position: absolute;
   bottom: -25px;
   width: 100%;
-  max-width: 1024px;
+  max-width: 90%;
 }
 
 .headerIcon {
@@ -126,6 +128,7 @@ span.headerSearchText {
 .date {
   position: absolute;
   top: 50px;
+  z-index: 2;
 }
 
 input.headerSearchInput {
@@ -144,6 +147,7 @@ input.headerSearchInput {
   border-radius: 5px;
   -webkit-box-shadoow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  z-index: 2;
 }
 
 .optionItem {

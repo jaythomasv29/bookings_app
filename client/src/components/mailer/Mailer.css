@@ -1,0 +1,47 @@
+.mailer {
+  width: 100%;
+  padding: 60px 0px;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  background-color: #00224F;
+  justify-content: center;
+}
+h2 {
+  margin: 5px;
+}
+
+.mailTitle {
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.mailInputContainer input {
+  margin-right: 5px;
+  border-radius: 3px;
+  width: 300px;
+  padding: 20px;
+  border: none;
+}
+
+.mailInputContainer input::placeholder {
+  font-size: 18px;
+}
+
+.mailInputContainer button {
+  color: white;
+  font-size: 18px;
+  border-radius: 3px;
+  /* height: 40px; */
+  background-color: #0071C2;
+  padding: 17px 40px;
+  border: none;
+}
+
+.checkbox {
+  margin: 5px;
+  display: flex;
+
+}

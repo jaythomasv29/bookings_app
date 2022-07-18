@@ -1,0 +1,25 @@
+.propertyList {
+  display: flex;
+  width: 1024px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.propertyListItem {
+  cursor: pointer;
+}
+
+.propertyListImage {
+  width: 100%;
+  object-fit: contain;
+}
+
+.propertyListTitles h2 {
+  font-size: 18px;
+}
+.propertyListTitles h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+

@@ -1,0 +1,95 @@
+.listContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.listWrapper {
+  width: 100%;
+  max-width: 90%;
+  display: flex;
+  gap: 20px;
+}
+
+.listSearch {
+  flex: 1;
+  background-color: #febb02;
+  padding: 10px;
+  border-radius: 10px;
+  position: sticky;
+  top: 10px;
+  height: max-content;
+}
+
+
+.listSearchTitle {
+  color: #555;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.listSearchItem {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.listSearchItem label {
+  font-size: 14px;
+}
+
+.listSearchItem input {
+  height: 30px;
+  border: none;
+  padding: 5px;
+}
+
+span.dateSearchItem {
+  height: 30px;
+  padding: 5px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.listResult {
+  flex: 3;
+}
+
+.listSearchItem {
+  position: relative
+}
+
+.dateListing {
+  position: absolute;
+  top: 61px;
+  left: 0px;
+}
+
+.listSearchOptionItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 14px;
+}
+.listItemOptions {
+  padding: 10px;
+}
+
+.listOptionInput {
+  width: 50px;
+}
+
+.listSearch button {
+  width: 100%;
+  background-color: #0071C2;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 15px 0px;
+  
+}
+

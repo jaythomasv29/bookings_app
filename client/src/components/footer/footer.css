@@ -1,0 +1,17 @@
+.footer {
+  width: 100%;
+  max-width: 90%;
+}
+.footerLists {
+  display: flex;
+}
+
+ul.footer-navigation-links-list {
+  list-style: none;
+}
+
+li.footer-navigation-link {
+  color: #0071C2;
+  font-size: 14px;
+  margin: 10px;
+}
