@@ -1,4 +1,4 @@
-import Hotel from "../models/hotels.js";
+import Hotel from "../models/Hotels.js";
 
 // Create hotel controller
 export const createHotel = async (req, res, next) => {
@@ -51,3 +51,17 @@ export const getHotelById = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getCountByCity = async (req, res, next) => {
+  // api/hotels/countByCity?cities=dallas,london,tokyo
+  const cities = req.query.cities.split(",")
+  try {
+    const list = await Promise.all(cities.map(city => {
+      console.log(city)
+      return Hotel.countDocuments({city: city.toLowerCase()})
+    }))
+    res.json(list)
+  } catch (err) {
+    next(err)
+  }
+}
