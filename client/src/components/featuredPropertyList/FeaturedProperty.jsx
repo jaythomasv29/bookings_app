@@ -1,6 +1,9 @@
+import useFetch from '../../hooks/useFetch'
+import { capitalize } from '../../utils/utils'
+
 import './featuredProperty.css'
 
-const FEATURED_PROPERTIES = [
+const FEATURED_IMAGES = [
   {
     id: 1,
     img: "https://t-cf.bstatic.com/xdata/images/hotel/max500/103951224.jpg?k=03736dd4e1e89c1132e4957149e394d01ac6e8f64f4b09e30ade97a6176f0640&o=",
@@ -39,23 +42,27 @@ const FEATURED_PROPERTIES = [
   }
 ]
 function FeaturedProperty() {
+  const { data, loading, error } = useFetch("/hotels?featured=true&limit=4")
   
   return (
     <>
     <h2 className="homeTitle">Featured Listings</h2>
       <div className="featuredProperty">
-        {
-          FEATURED_PROPERTIES.map(property => (
-            <div key={property.id} className="featuredPropertyItem">
+        { loading ? "Loading..." :
+          data.map((property,idx) => (
+            <div key={property._id} className="featuredPropertyItem">
               <div className="featuredPropertyInfo">
-                <img className="featuredPropertyImage" src={property.img} alt={property.name} />
-                <span className="featuredPropertyName">{property.name}</span>
-                <span className="featuredPropertyCity">{property.city}</span>
+                <img className="featuredPropertyImage" src={property.photos[0] || FEATURED_IMAGES[idx].img} alt={property.name} />
+                <span className="featuredPropertyName">{capitalize(property.name)}</span>
+                <span className="featuredPropertyCity">{capitalize(property.city)}</span>
                 <span className="featuredPropertyPrice">Starting from ${property.price}</span>
-                <div className="featuredPropertyRatingContainer">
+                {
+                  property.rating && 
+                  <div className="featuredPropertyRatingContainer">
                 <button className="featuredPropertyRating">{property.rating}</button>
-                <span className="featuredPropertyCategory">{property.category} &#x2219; <span className="featuredPropertyReviews">13 review</span></span>
+                <span className="featuredPropertyCategory">{property.type} &#x2219;</span>
                 </div>
+              }
               </div>
             </div>
           ))

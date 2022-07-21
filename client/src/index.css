@@ -2,6 +2,7 @@
 * {
   /* CSS Variables */
   --theme-color: #003580;
+  --secondary-color: #0071c2;
 }
 body {
   margin: 0;

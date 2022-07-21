@@ -66,6 +66,7 @@ span.dateSearchItem {
   position: absolute;
   top: 61px;
   left: 0px;
+  z-index: 2;
 }
 
 .listSearchOptionItem {
@@ -83,13 +84,14 @@ span.dateSearchItem {
   width: 50px;
 }
 
-.listSearch button {
+button.listSearch  {
   width: 100%;
   background-color: #0071C2;
   border: none;
   color: #fff;
   font-size: 16px;
   padding: 15px 0px;
+  cursor: pointer;
   
 }
 

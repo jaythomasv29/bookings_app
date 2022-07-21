@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { faHeartCircleExclamation, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft'
-import CancelIcon from '@mui/icons-material/Cancel';
-import { useParams } from 'react-router-dom'
+
+import { useLocation } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import Mailer from '../../components/mailer/Mailer'
 import Footer from '../../components/footer/footer'
 import Navbar from '../../components/navbar/Navbar'
 import './hotel.css'
+import useFetch from '../../hooks/useFetch'
+import { SearchContext } from '../../context/SearchContext'
+import { calculateDateDifference } from '../../utils/utils'
 
 const HOTEL_PHOTOS = [
   {
@@ -52,39 +53,43 @@ const HOTEL_PHOTOS = [
 ]
 
 function Hotel() {
-  const [slideNumber, setSlideNumber] = useState(0)
-  const [slider, setSlider] = useState(true)
+  const location = useLocation()
+  const { dates, options } = useContext(SearchContext)
 
-  const handleSlider = (idx) => {
-    setSlideNumber(idx)
-    setSlider(!slider)
-  }
+  const dateDiff = calculateDateDifference(dates[0]?.endDate, dates[0]?.startDate)
+  const { data, loading, error } = useFetch(`/hotels/find/${location.state?.hotelId}`)
+  // const [slideNumber, setSlideNumber] = useState(0)
+  // const [slider, setSlider] = useState(true)
+
+  // const handleSlider = (idx) => {
+  //   setSlideNumber(idx)
+  //   setSlider(!slider)
+  // }
   return (
     <div>
-        
 
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
-     
+
         <div className="hotelWrapper">
           <button className="bookNowBtn primaryButton">Book Now</button>
-          <h1 className="hotelTitle">Grand Hotel</h1>
+          <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon style={{ fontSize: "20px", color: "#0071c2" }} icon={faLocationDot} />
-            <span>125 Elton St New York</span>
+            <span>{data.address}, {data.city}</span>
             <span className="hotelDistance">
-              Excellent location - 500m from center
+              Excellent location - {data.distance} from center
             </span>
           </div>
           <span className="hotelPriceHighlight">
-            Book a stay over $114 at this property and get a free airport taxi
+            Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
-            { 
+            {
               HOTEL_PHOTOS.map((photo, idx) => (
                 <div key={photo.id} className="hotelImgWrapper">
-                  <img onClick={() => handleSlider(idx)} className="hotelImg" src={photo.src} alt="hotel-preview-display" />
+                  <img className="hotelImg" src={photo.src} alt="hotel-preview-display" />
                 </div>
               ))
             }
@@ -92,63 +97,28 @@ function Hotel() {
           <div className="hotelDetails">
             <div className="hotelDetailsText">
 
-              <h2 className="hotelTitle">Hotel Louison</h2>
-              <p className="hotelDescription">Hotel Louison is located in central Paris, 1,650 feet from the Montparnasse Bienvenüe Metro (lines 4, 6, 12 and 13). <br />
-                Free WiFi is available throughout the hotel.  Eco-label certified, the hotel has soundproofed and air-conditioned rooms with elevator access and satellite TV.  <br />
-                <p className="hotelDescription">
-                  <br />
-                  The hotel is 2,650 feet from the Bon Marche and 0.8 mi from Saint-Germain-des-Prés. From the Montparnasse Bienvenüe Metro, guests can quickly access the rest of central Paris.
-                  <br />
-                </p>
-                <p className="hotelDescription">
-                  This is our guests' favorite part of Paris, according to independent reviews.
-                  <br />
-                </p>
-                <p className="hotelDescription">
-                  Among our eco-responsible commitments, we chose to offer breakfast served at the table. This is why we created four different formula : Parisian, Healthy, and a gourmet for each. <br /> However, guests can ask our team if they want other homemade waffles or pastries.Every evening, a buffet offering drinks is available free of charge in the hotel lobby.
-                </p>
-                <p className='hotelDescription'>
-                  Among our eco-responsible commitments, we chose to offer breakfast served at the table. This is why we created four different formula : Parisian, Healthy, and a gourmet for each. <br /> However, guests can ask our team if they want other homemade waffles or pastries.Every evening, a buffet offering drinks is available free of charge in the hotel lobby.
-                  Couples in particular like the location – they rated it 9.1 for a two-person trip.</p>
-              </p>
-              <p className="hotelDescription">Hotel Louison is located in central Paris, 1,650 feet from the Montparnasse Bienvenüe Metro (lines 4, 6, 12 and 13). <br />
-                Free WiFi is available throughout the hotel.  Eco-label certified, the hotel has soundproofed and air-conditioned rooms with elevator access and satellite TV.  <br />
-                <p className="hotelDescription">
-                  <br />
-                  The hotel is 2,650 feet from the Bon Marche and 0.8 mi from Saint-Germain-des-Prés. From the Montparnasse Bienvenüe Metro, guests can quickly access the rest of central Paris.
-                  <br />
-                </p>
-                <p className="hotelDescription">
-                  This is our guests' favorite part of Paris, according to independent reviews.
-                  <br />
-                </p>
-                <p className="hotelDescription">
-                  Among our eco-responsible commitments, we chose to offer breakfast served at the table. This is why we created four different formula : Parisian, Healthy, and a gourmet for each. <br /> However, guests can ask our team if they want other homemade waffles or pastries.Every evening, a buffet offering drinks is available free of charge in the hotel lobby.
-                </p>
-                <p className='hotelDescription'>
-                  Among our eco-responsible commitments, we chose to offer breakfast served at the table. This is why we created four different formula : Parisian, Healthy, and a gourmet for each. <br /> However, guests can ask our team if they want other homemade waffles or pastries.Every evening, a buffet offering drinks is available free of charge in the hotel lobby.
-                  Couples in particular like the location – they rated it 9.1 for a two-person trip.</p>
-              </p>
+              <h2 className="hotelTitle">{data.name}</h2>
+              <p className="hotelDescription">{data.description}</p>
             </div>
             <div className="hotelDetailsPrice">
-              <h2>Perfect for a 9-night stay</h2>
+              <h2>Perfect for a {dateDiff}-night stay</h2>
+
               <span>
-                <FontAwesomeIcon icon={faHeartCircleExclamation} style={{marginRight: "5px"}} />
+                <FontAwesomeIcon icon={faHeartCircleExclamation} style={{ marginRight: "5px" }} />
                 Located in the real heart of Paris, this property has an excellent location score of 9.8!
               </span>
-              <h2><b>$945</b> (9 nights)</h2>
+              <h2><b>${data.cheapestPrice * dateDiff * options.room}</b> ({dateDiff} night stay, {options.room} rooms)</h2>
               <p className='breakfastInfo'>Breakfast Info</p>
               <p className='breakfastDescription'>Complimentary breakfast, Breakfast to go</p>
-
               <button className='primaryButton'>Reserve Now!</button>
             </div>
           </div>
-        <Mailer />
-        <Footer />
+          <Mailer />
+          <Footer />
         </div>
-        
+
       </div>
-       
+
     </div>
 
   )
