@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { faHeartCircleExclamation, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import Mailer from '../../components/mailer/Mailer'
 import Footer from '../../components/footer/footer'
@@ -10,7 +10,9 @@ import Navbar from '../../components/navbar/Navbar'
 import './hotel.css'
 import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
+import { AuthContext } from '../../context/AuthContext'
 import { calculateDateDifference } from '../../utils/utils'
+import Reserve from '../../components/reserve/Reserve'
 
 const HOTEL_PHOTOS = [
   {
@@ -53,18 +55,21 @@ const HOTEL_PHOTOS = [
 ]
 
 function Hotel() {
+  const navigate = useNavigate()
   const location = useLocation()
   const { dates, options } = useContext(SearchContext)
+  const { user } = useContext(AuthContext)
 
   const dateDiff = calculateDateDifference(dates[0]?.endDate, dates[0]?.startDate)
   const { data, loading, error } = useFetch(`/hotels/find/${location.state?.hotelId}`)
-  // const [slideNumber, setSlideNumber] = useState(0)
-  // const [slider, setSlider] = useState(true)
+  const [ openModal, setOpenModal ] = useState(false)
 
-  // const handleSlider = (idx) => {
-  //   setSlideNumber(idx)
-  //   setSlider(!slider)
-  // }
+  const handleClick = () => {
+    if (user) {
+      setOpenModal(!openModal)
+    } else
+      navigate('/login')
+  }
   return (
     <div>
 
@@ -73,7 +78,7 @@ function Hotel() {
       <div className="hotelContainer">
 
         <div className="hotelWrapper">
-          <button className="bookNowBtn primaryButton">Book Now</button>
+          {/* <button onClick={handleClick} className="bookNowBtn primaryButton">Book Now</button> */}
           <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon style={{ fontSize: "20px", color: "#0071c2" }} icon={faLocationDot} />
@@ -110,15 +115,21 @@ function Hotel() {
               <h2><b>${data.cheapestPrice * dateDiff * options.room}</b> ({dateDiff} night stay, {options.room} rooms)</h2>
               <p className='breakfastInfo'>Breakfast Info</p>
               <p className='breakfastDescription'>Complimentary breakfast, Breakfast to go</p>
-              <button className='primaryButton'>Reserve Now!</button>
+              <button onClick={handleClick} className='primaryButton'>Reserve Now!</button>
             </div>
           </div>
+            {
+              openModal &&
+              <Reserve options={options} hotelId={location.state?.hotelId}setOpenModal={setOpenModal}/>
+            }
           <Mailer />
           <Footer />
+
         </div>
+         
 
       </div>
-
+           
     </div>
 
   )

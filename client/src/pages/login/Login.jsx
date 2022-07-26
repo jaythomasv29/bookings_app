@@ -28,7 +28,7 @@ const Login = () => {
     })
     try {
       const res = await axios.post("/auth/login", credentials)
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
       navigate('/')
 
     } catch (err) {
@@ -40,10 +40,10 @@ const Login = () => {
     <h2>Booking.com</h2>
     <p className="secondaryTitle">Login</p>
     <div className="formControl">
-      <input type="text" className="inputField" placeholder="username" name="username" value={credentials.username} onChange={handleChange} />
+      <input type="text" className="inputField" placeholder="username" name="username" value={credentials.username} onChange={handleChange} autoComplete="off"/>
     </div>
     <div className="formControl">
-      <input type="text" className="inputField" placeholder="password" name="password" value={credentials.password} onChange={handleChange} />
+      <input type="password" className="inputField" placeholder="password" name="password" value={credentials.password} onChange={handleChange} />
     </div>
       <div className="formAction">
         <button disabled={loading} onClick={handleLogin} className="loginBtn">Login</button>

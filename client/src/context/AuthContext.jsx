@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { createContext, useReducer } from 'react'
 const INITIAL_STATE = {
-  user: localStorage.getItem('user'),
+  user: JSON.parse(localStorage.getItem('user')),
   loading: false,
   error: null
 }
@@ -41,7 +41,8 @@ const authReducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, INITIAL_STATE)
   const {user, loading, error} = state
-
+  console.log(user);
+  
   // persist user in local storage when a user logs in
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user))

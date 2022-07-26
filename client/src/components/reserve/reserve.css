@@ -1,0 +1,153 @@
+.closeReserve {
+  cursor: pointer;
+}
+
+.reserve {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.418);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.reserveContainer {
+  background-color: white;
+  padding: 20px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.closeReserve {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  margin: 5px;
+}
+
+
+.reserveItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 20px;
+  border: 1px solid rgb(188, 188, 188);
+  padding: 10px;
+  margin: 20px 0px;
+}
+
+.reserveSelectTitle {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.reserveItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+}
+
+.reserveTitle {
+  font-weight: 500;
+}
+
+.reserveDesc {
+  font-weight: 300;
+}
+
+.reserveOccupancy {
+  font-size: 12px;
+}
+
+.reservePrice {
+  font-weight: 500;
+}
+
+.rSelectRooms{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 8px;
+  color: gray;
+}
+
+.room{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid rgb(230, 228, 228);
+  border-radius: 3px;
+  flex-wrap: wrap;
+}
+
+.selected {
+  background-color: var(--secondary-color);
+}
+
+.roomCheckbox {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid rgb(225, 222, 222);
+  border-radius: 15px;
+}
+
+.availableRoom {
+  background-color: rgba(59, 175, 136, 0.43);
+}
+
+.unavailableRoom {
+  background-color: rgba(128, 128, 128, 0.41);
+  cursor: not-allowed;
+}
+
+
+
+.roomStatus {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 5px;
+  text-decoration: underline;
+}
+
+.roomStatus > .MuiSvgIcon-root {
+  font-size: 12px;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 50%;
+
+}
+
+
+
+.roomNumber {
+  font-weight: 400;
+  font-size: 12px;
+  
+}
+
+.reserveBtn {
+  cursor: pointer;
+  padding: 15px 25px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  border: none;
+  
+}

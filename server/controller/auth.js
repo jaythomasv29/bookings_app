@@ -8,7 +8,7 @@ export const register = async (req, res, next) => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    const newUser = new User({ username, email, password: hash });
+    const newUser = new User({ ...req.body, password: hash });
     await newUser.save();
     res.status(201).send("User has been created");
   } catch (err) {
@@ -42,7 +42,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
       })
       .status(200)
-      .json(otherDetails);
+      .json({details: {...otherDetails, isAdmin}});
   } catch (err) {
     next(err);
   }
