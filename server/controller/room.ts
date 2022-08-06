@@ -1,8 +1,9 @@
+import { Request, Response, NextFunction } from 'express'
 import Room from "../models/Rooms.js";
 import Hotel from "../models/Hotels.js";
 import { createError } from "../utils/error.js";
 
-export const createRoom = async (req, res, next) => {
+export const createRoom = async (req: Request, res: Response, next: NextFunction) => {
   const hotelId = req.params.hotelId;
   const newRoom = new Room(req.body);
 
@@ -23,7 +24,7 @@ export const createRoom = async (req, res, next) => {
   }
 };
 
-export const updateRoom = async (req, res, next) => {
+export const updateRoom = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(
       req.params.id,
@@ -36,7 +37,7 @@ export const updateRoom = async (req, res, next) => {
   }
 };
 
-export const deleteRoom = async (req, res, next) => {
+export const deleteRoom = async (req: Request, res: Response, next: NextFunction) => {
   const hotelId = req.params.hotelId;
   try {
     await Room.findByIdAndDelete(req.params.id);
@@ -55,7 +56,7 @@ export const deleteRoom = async (req, res, next) => {
   }
 };
 
-export const getRoomById = async (req, res, next) => {
+export const getRoomById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const foundRoom = await Hotel.findById(req.params.id);
     res.status(200).json(foundRoom);
@@ -64,7 +65,7 @@ export const getRoomById = async (req, res, next) => {
   }
 };
 
-export const getAllRooms = async (req, res, next) => {
+export const getAllRooms = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const allRooms = await Room.find();
     res.status(200).json(allRooms);
@@ -73,7 +74,7 @@ export const getAllRooms = async (req, res, next) => {
   }
 };
 
-export const updateRoomAvailability = async (req, res, next) => {
+export const updateRoomAvailability = async (req: Request, res: Response, next: NextFunction) => {
   try {
     await Room.updateOne(
       { "roomNumbers._id": req.params.roomNumber },

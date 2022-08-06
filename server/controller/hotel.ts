@@ -1,8 +1,9 @@
+import { Request, Response, NextFunction} from 'express'
 import Hotel from "../models/Hotels.js";
 import Room from "../models/Rooms.js"
 
 // Create hotel controller
-export const createHotel = async (req, res, next) => {
+export const createHotel = async (req: Request, res: Response, next: NextFunction) => {
   const newHotel = new Hotel(req.body);
 
   try {
@@ -13,7 +14,7 @@ export const createHotel = async (req, res, next) => {
   }
 };
 // Update hotel controller
-export const updateHotel = async (req, res, next) => {
+export const updateHotel = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedHotel = await Hotel.findByIdAndUpdate(
       req.params.id,
@@ -26,7 +27,7 @@ export const updateHotel = async (req, res, next) => {
   }
 };
 
-export const deleteHotel = async (req, res, next) => {
+export const deleteHotel = async (req: Request, res: Response, next: NextFunction) => {
   try {
     await Hotel.findByIdAndDelete(req.params.id);
     res.status(200).json(`Hotel ${req.params.id} successfully deleted`);
@@ -35,7 +36,7 @@ export const deleteHotel = async (req, res, next) => {
   }
 };
 
-export const getHotels = async (req, res, next) => {
+export const getHotels = async (req: Request, res: Response, next: NextFunction) => {
   const { min, max, ...others } = req.query;
   //  /api/hotels/?featured=true
   try {
@@ -51,7 +52,7 @@ export const getHotels = async (req, res, next) => {
   }
 };
 
-export const getHotelById = async (req, res, next) => {
+export const getHotelById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const foundHotel = await Hotel.findById(req.params.id);
     res.status(200).json(foundHotel);
@@ -60,7 +61,7 @@ export const getHotelById = async (req, res, next) => {
   }
 };
 
-export const getCountByCity = async (req, res, next) => {
+export const getCountByCity = async (req: Request, res: Response, next: NextFunction) => {
   // api/hotels/countByCity?cities=dallas,london,tokyo
   const cities = req.query.cities.split(",");
   try {
@@ -75,7 +76,7 @@ export const getCountByCity = async (req, res, next) => {
   }
 };
 
-export const getCountByType = async (req, res, next) => {
+export const getCountByType = async (req: Request, res: Response, next: NextFunction) => {
   const types = ["Hotel", "Apartment", "Resort", "Villa"];
   try {
     const list = await Promise.all(
@@ -93,7 +94,7 @@ export const getCountByType = async (req, res, next) => {
   }
 };
 
-export const getHotelRooms = async (req, res, next) => {
+export const getHotelRooms = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const hotel = await Hotel.findById(req.params.hotelId)
     const list = await Promise.all(hotel.rooms.map(room => {

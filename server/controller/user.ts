@@ -1,7 +1,8 @@
+import { Request, Response, NextFunction } from 'express'
 import User from "../models/Users.js";
 
 // Update User controller
-export const updateUser = async (req, res, next) => {
+export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
@@ -14,7 +15,7 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
-export const deleteUser = async (req, res, next) => {
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.status(200).json(`User ${req.params.id} successfully deleted`);
@@ -23,7 +24,7 @@ export const deleteUser = async (req, res, next) => {
   }
 };
 
-export const getUsers = async (req, res, next) => {
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const allUsers = await User.find();
     res.status(200).json(allUsers);
@@ -32,9 +33,9 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
-export const getUserById = async (req, res, next) => {
+export const getUserById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const foundUser = await User.findById(req.params.id);
+    const foundUser = await User.findById(req, res, next);
     res.status(200).json(foundUser);
   } catch (err) {
     next(err);

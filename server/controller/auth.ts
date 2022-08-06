@@ -1,9 +1,10 @@
+import { Request, Response, NextFunction } from "express";
 import User from "../models/Users.js";
 import bcrypt from "bcryptjs";
 import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
-export const register = async (req, res, next) => {
+export const register = async (req: Request, res: Response, next: NextFunction) => {
   const { username, email, password } = req.body;
   try {
     const salt = bcrypt.genSaltSync(10);
@@ -16,7 +17,7 @@ export const register = async (req, res, next) => {
   }
 };
 
-export const login = async (req, res, next) => {
+export const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return next(createError(404, "User does not exist"));
@@ -27,13 +28,13 @@ export const login = async (req, res, next) => {
     );
     if (!isPasswordCorrect)
       return next(createError(400, "Wrong password or username"));
-
+      const JWT_SECRET: string = process.env.JWT_SECRET || ''
     const token = jwt.sign(
       {
         id: user._id,
         isAdmin: user.isAdmin,
       },
-      process.env.JWT_SECRET
+      JWT_SECRET
     );
 
     const { password, isAdmin, ...otherDetails } = user._doc;

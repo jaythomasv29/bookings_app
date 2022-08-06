@@ -1,4 +1,5 @@
-import express from 'express'
+import express, { Request, Response, Application, NextFunction, ErrorRequestHandler } from 'express'
+import { ErrorUserRequestHandler } from './types/errorRequestHandler'
 import dotenv from "dotenv"
 import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose'
@@ -9,14 +10,14 @@ import roomsRoute from './routes/rooms.js'
 import cors from 'cors'
 
 const PORT = 5000
-const app = express()
+const app: Application = express()
 dotenv.config()
 
 // Initial MongoDB connection
 const connect = async () => {
-  console.log(process.env.MONGO_CONNECT)
+  const mongoConnectionString: string = process.env.MONGO_CONNECT || ''
   try {
-    await mongoose.connect(process.env.MONGO_CONNECT);
+    await mongoose.connect(mongoConnectionString);
     console.log('connected')
   } catch (err) {
     console.log("error connecting to db");
@@ -32,7 +33,7 @@ mongoose.connection.on("connected", () => {
 })
 
 // Routes
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Live on root")
 })
 
@@ -47,8 +48,8 @@ app.use("/api/users", usersRoute)
 app.use("/api/hotels", hotelsRoute)
 app.use("/api/rooms", roomsRoute)
 
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500
+app.use((err: ErrorUserRequestHandler, req: Request, res: Response, next: NextFunction) => {
+  const errorStatus: any = err.status || 500
   const errorMessage = err.message || "Something went wrong"
   return res.status(errorStatus).json({
     success: false,
